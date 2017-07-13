@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jixiao.dao.CheckvalueMapper" >
+  <resultMap id="BaseResultMap" type="com.jixiao.entity.Checkvalue" >
+    <id column="VALUEID" property="valueid" jdbcType="INTEGER" />
+    <result column="SXSZVALUE" property="sxszvalue" jdbcType="INTEGER" />
+    <result column="LJZLVALUE" property="ljzlvalue" jdbcType="INTEGER" />
+    <result column="GZZFVALUE" property="gzzfvalue" jdbcType="INTEGER" />
+    <result column="JCNLVALUE" property="jcnlvalue" jdbcType="INTEGER" />
+    <result column="ZZXTNLVALUE" property="zzxtnlvalue" jdbcType="INTEGER" />
+    <result column="CXNLVALUE" property="cxnlvalue" jdbcType="INTEGER" />
+    <result column="LDNLVALUE" property="ldnlvalue" jdbcType="INTEGER" />
+    <result column="ZRXVALUE" property="zrxvalue" jdbcType="INTEGER" />
+    <result column="FWYSVALUE" property="fwysvalue" jdbcType="INTEGER" />
+    <result column="MBDCVALUE" property="mbdcvalue" jdbcType="INTEGER" />
+    <result column="GLXLVALUE" property="glxlvalue" jdbcType="INTEGER" />
+    <result column="XSKFVALUE" property="xskfvalue" jdbcType="INTEGER" />
+    <result column="EXCELLENT" property="excellent" jdbcType="DECIMAL" />
+    <result column="GOOD" property="good" jdbcType="DECIMAL" />
+    <result column="EMPLOYABLE" property="employable" jdbcType="DECIMAL" />
+    <result column="BASICEMPLOYABLE" property="basicemployable" jdbcType="DECIMAL" />
+    <result column="UNEMPLOYABLE" property="unemployable" jdbcType="DECIMAL" />
+    <result column="SUPERIORS" property="superiors" jdbcType="DECIMAL" />
+    <result column="PEER" property="peer" jdbcType="DECIMAL" />
+    <result column="INFERIOR" property="inferior" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    VALUEID, SXSZVALUE, LJZLVALUE, GZZFVALUE, JCNLVALUE, ZZXTNLVALUE, CXNLVALUE, LDNLVALUE, 
+    ZRXVALUE, FWYSVALUE, MBDCVALUE, GLXLVALUE, XSKFVALUE, EXCELLENT, GOOD, EMPLOYABLE, 
+    BASICEMPLOYABLE, UNEMPLOYABLE, SUPERIORS, PEER, INFERIOR
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jixiao.entity.CheckvalueExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from checkvalue
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from checkvalue
+    where VALUEID = #{valueid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from checkvalue
+    where VALUEID = #{valueid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jixiao.entity.CheckvalueExample" >
+    delete from checkvalue
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jixiao.entity.Checkvalue" >
+    insert into checkvalue (VALUEID, SXSZVALUE, LJZLVALUE, 
+      GZZFVALUE, JCNLVALUE, ZZXTNLVALUE, 
+      CXNLVALUE, LDNLVALUE, ZRXVALUE, 
+      FWYSVALUE, MBDCVALUE, GLXLVALUE, 
+      XSKFVALUE, EXCELLENT, GOOD, 
+      EMPLOYABLE, BASICEMPLOYABLE, UNEMPLOYABLE, 
+      SUPERIORS, PEER, INFERIOR
+      )
+    values (#{valueid,jdbcType=INTEGER}, #{sxszvalue,jdbcType=INTEGER}, #{ljzlvalue,jdbcType=INTEGER}, 
+      #{gzzfvalue,jdbcType=INTEGER}, #{jcnlvalue,jdbcType=INTEGER}, #{zzxtnlvalue,jdbcType=INTEGER}, 
+      #{cxnlvalue,jdbcType=INTEGER}, #{ldnlvalue,jdbcType=INTEGER}, #{zrxvalue,jdbcType=INTEGER}, 
+      #{fwysvalue,jdbcType=INTEGER}, #{mbdcvalue,jdbcType=INTEGER}, #{glxlvalue,jdbcType=INTEGER}, 
+      #{xskfvalue,jdbcType=INTEGER}, #{excellent,jdbcType=DECIMAL}, #{good,jdbcType=DECIMAL}, 
+      #{employable,jdbcType=DECIMAL}, #{basicemployable,jdbcType=DECIMAL}, #{unemployable,jdbcType=DECIMAL}, 
+      #{superiors,jdbcType=DECIMAL}, #{peer,jdbcType=DECIMAL}, #{inferior,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jixiao.entity.Checkvalue" >
+    insert into checkvalue
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="valueid != null" >
+        VALUEID,
+      </if>
+      <if test="sxszvalue != null" >
+        SXSZVALUE,
+      </if>
+      <if test="ljzlvalue != null" >
+        LJZLVALUE,
+      </if>
+      <if test="gzzfvalue != null" >
+        GZZFVALUE,
+      </if>
+      <if test="jcnlvalue != null" >
+        JCNLVALUE,
+      </if>
+      <if test="zzxtnlvalue != null" >
+        ZZXTNLVALUE,
+      </if>
+      <if test="cxnlvalue != null" >
+        CXNLVALUE,
+      </if>
+      <if test="ldnlvalue != null" >
+        LDNLVALUE,
+      </if>
+      <if test="zrxvalue != null" >
+        ZRXVALUE,
+      </if>
+      <if test="fwysvalue != null" >
+        FWYSVALUE,
+      </if>
+      <if test="mbdcvalue != null" >
+        MBDCVALUE,
+      </if>
+      <if test="glxlvalue != null" >
+        GLXLVALUE,
+      </if>
+      <if test="xskfvalue != null" >
+        XSKFVALUE,
+      </if>
+      <if test="excellent != null" >
+        EXCELLENT,
+      </if>
+      <if test="good != null" >
+        GOOD,
+      </if>
+      <if test="employable != null" >
+        EMPLOYABLE,
+      </if>
+      <if test="basicemployable != null" >
+        BASICEMPLOYABLE,
+      </if>
+      <if test="unemployable != null" >
+        UNEMPLOYABLE,
+      </if>
+      <if test="superiors != null" >
+        SUPERIORS,
+      </if>
+      <if test="peer != null" >
+        PEER,
+      </if>
+      <if test="inferior != null" >
+        INFERIOR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="valueid != null" >
+        #{valueid,jdbcType=INTEGER},
+      </if>
+      <if test="sxszvalue != null" >
+        #{sxszvalue,jdbcType=INTEGER},
+      </if>
+      <if test="ljzlvalue != null" >
+        #{ljzlvalue,jdbcType=INTEGER},
+      </if>
+      <if test="gzzfvalue != null" >
+        #{gzzfvalue,jdbcType=INTEGER},
+      </if>
+      <if test="jcnlvalue != null" >
+        #{jcnlvalue,jdbcType=INTEGER},
+      </if>
+      <if test="zzxtnlvalue != null" >
+        #{zzxtnlvalue,jdbcType=INTEGER},
+      </if>
+      <if test="cxnlvalue != null" >
+        #{cxnlvalue,jdbcType=INTEGER},
+      </if>
+      <if test="ldnlvalue != null" >
+        #{ldnlvalue,jdbcType=INTEGER},
+      </if>
+      <if test="zrxvalue != null" >
+        #{zrxvalue,jdbcType=INTEGER},
+      </if>
+      <if test="fwysvalue != null" >
+        #{fwysvalue,jdbcType=INTEGER},
+      </if>
+      <if test="mbdcvalue != null" >
+        #{mbdcvalue,jdbcType=INTEGER},
+      </if>
+      <if test="glxlvalue != null" >
+        #{glxlvalue,jdbcType=INTEGER},
+      </if>
+      <if test="xskfvalue != null" >
+        #{xskfvalue,jdbcType=INTEGER},
+      </if>
+      <if test="excellent != null" >
+        #{excellent,jdbcType=DECIMAL},
+      </if>
+      <if test="good != null" >
+        #{good,jdbcType=DECIMAL},
+      </if>
+      <if test="employable != null" >
+        #{employable,jdbcType=DECIMAL},
+      </if>
+      <if test="basicemployable != null" >
+        #{basicemployable,jdbcType=DECIMAL},
+      </if>
+      <if test="unemployable != null" >
+        #{unemployable,jdbcType=DECIMAL},
+      </if>
+      <if test="superiors != null" >
+        #{superiors,jdbcType=DECIMAL},
+      </if>
+      <if test="peer != null" >
+        #{peer,jdbcType=DECIMAL},
+      </if>
+      <if test="inferior != null" >
+        #{inferior,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jixiao.entity.CheckvalueExample" resultType="java.lang.Integer" >
+    select count(*) from checkvalue
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update checkvalue
+    <set >
+      <if test="record.valueid != null" >
+        VALUEID = #{record.valueid,jdbcType=INTEGER},
+      </if>
+      <if test="record.sxszvalue != null" >
+        SXSZVALUE = #{record.sxszvalue,jdbcType=INTEGER},
+      </if>
+      <if test="record.ljzlvalue != null" >
+        LJZLVALUE = #{record.ljzlvalue,jdbcType=INTEGER},
+      </if>
+      <if test="record.gzzfvalue != null" >
+        GZZFVALUE = #{record.gzzfvalue,jdbcType=INTEGER},
+      </if>
+      <if test="record.jcnlvalue != null" >
+        JCNLVALUE = #{record.jcnlvalue,jdbcType=INTEGER},
+      </if>
+      <if test="record.zzxtnlvalue != null" >
+        ZZXTNLVALUE = #{record.zzxtnlvalue,jdbcType=INTEGER},
+      </if>
+      <if test="record.cxnlvalue != null" >
+        CXNLVALUE = #{record.cxnlvalue,jdbcType=INTEGER},
+      </if>
+      <if test="record.ldnlvalue != null" >
+        LDNLVALUE = #{record.ldnlvalue,jdbcType=INTEGER},
+      </if>
+      <if test="record.zrxvalue != null" >
+        ZRXVALUE = #{record.zrxvalue,jdbcType=INTEGER},
+      </if>
+      <if test="record.fwysvalue != null" >
+        FWYSVALUE = #{record.fwysvalue,jdbcType=INTEGER},
+      </if>
+      <if test="record.mbdcvalue != null" >
+        MBDCVALUE = #{record.mbdcvalue,jdbcType=INTEGER},
+      </if>
+      <if test="record.glxlvalue != null" >
+        GLXLVALUE = #{record.glxlvalue,jdbcType=INTEGER},
+      </if>
+      <if test="record.xskfvalue != null" >
+        XSKFVALUE = #{record.xskfvalue,jdbcType=INTEGER},
+      </if>
+      <if test="record.excellent != null" >
+        EXCELLENT = #{record.excellent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.good != null" >
+        GOOD = #{record.good,jdbcType=DECIMAL},
+      </if>
+      <if test="record.employable != null" >
+        EMPLOYABLE = #{record.employable,jdbcType=DECIMAL},
+      </if>
+      <if test="record.basicemployable != null" >
+        BASICEMPLOYABLE = #{record.basicemployable,jdbcType=DECIMAL},
+      </if>
+      <if test="record.unemployable != null" >
+        UNEMPLOYABLE = #{record.unemployable,jdbcType=DECIMAL},
+      </if>
+      <if test="record.superiors != null" >
+        SUPERIORS = #{record.superiors,jdbcType=DECIMAL},
+      </if>
+      <if test="record.peer != null" >
+        PEER = #{record.peer,jdbcType=DECIMAL},
+      </if>
+      <if test="record.inferior != null" >
+        INFERIOR = #{record.inferior,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update checkvalue
+    set VALUEID = #{record.valueid,jdbcType=INTEGER},
+      SXSZVALUE = #{record.sxszvalue,jdbcType=INTEGER},
+      LJZLVALUE = #{record.ljzlvalue,jdbcType=INTEGER},
+      GZZFVALUE = #{record.gzzfvalue,jdbcType=INTEGER},
+      JCNLVALUE = #{record.jcnlvalue,jdbcType=INTEGER},
+      ZZXTNLVALUE = #{record.zzxtnlvalue,jdbcType=INTEGER},
+      CXNLVALUE = #{record.cxnlvalue,jdbcType=INTEGER},
+      LDNLVALUE = #{record.ldnlvalue,jdbcType=INTEGER},
+      ZRXVALUE = #{record.zrxvalue,jdbcType=INTEGER},
+      FWYSVALUE = #{record.fwysvalue,jdbcType=INTEGER},
+      MBDCVALUE = #{record.mbdcvalue,jdbcType=INTEGER},
+      GLXLVALUE = #{record.glxlvalue,jdbcType=INTEGER},
+      XSKFVALUE = #{record.xskfvalue,jdbcType=INTEGER},
+      EXCELLENT = #{record.excellent,jdbcType=DECIMAL},
+      GOOD = #{record.good,jdbcType=DECIMAL},
+      EMPLOYABLE = #{record.employable,jdbcType=DECIMAL},
+      BASICEMPLOYABLE = #{record.basicemployable,jdbcType=DECIMAL},
+      UNEMPLOYABLE = #{record.unemployable,jdbcType=DECIMAL},
+      SUPERIORS = #{record.superiors,jdbcType=DECIMAL},
+      PEER = #{record.peer,jdbcType=DECIMAL},
+      INFERIOR = #{record.inferior,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jixiao.entity.Checkvalue" >
+    update checkvalue
+    <set >
+      <if test="sxszvalue != null" >
+        SXSZVALUE = #{sxszvalue,jdbcType=INTEGER},
+      </if>
+      <if test="ljzlvalue != null" >
+        LJZLVALUE = #{ljzlvalue,jdbcType=INTEGER},
+      </if>
+      <if test="gzzfvalue != null" >
+        GZZFVALUE = #{gzzfvalue,jdbcType=INTEGER},
+      </if>
+      <if test="jcnlvalue != null" >
+        JCNLVALUE = #{jcnlvalue,jdbcType=INTEGER},
+      </if>
+      <if test="zzxtnlvalue != null" >
+        ZZXTNLVALUE = #{zzxtnlvalue,jdbcType=INTEGER},
+      </if>
+      <if test="cxnlvalue != null" >
+        CXNLVALUE = #{cxnlvalue,jdbcType=INTEGER},
+      </if>
+      <if test="ldnlvalue != null" >
+        LDNLVALUE = #{ldnlvalue,jdbcType=INTEGER},
+      </if>
+      <if test="zrxvalue != null" >
+        ZRXVALUE = #{zrxvalue,jdbcType=INTEGER},
+      </if>
+      <if test="fwysvalue != null" >
+        FWYSVALUE = #{fwysvalue,jdbcType=INTEGER},
+      </if>
+      <if test="mbdcvalue != null" >
+        MBDCVALUE = #{mbdcvalue,jdbcType=INTEGER},
+      </if>
+      <if test="glxlvalue != null" >
+        GLXLVALUE = #{glxlvalue,jdbcType=INTEGER},
+      </if>
+      <if test="xskfvalue != null" >
+        XSKFVALUE = #{xskfvalue,jdbcType=INTEGER},
+      </if>
+      <if test="excellent != null" >
+        EXCELLENT = #{excellent,jdbcType=DECIMAL},
+      </if>
+      <if test="good != null" >
+        GOOD = #{good,jdbcType=DECIMAL},
+      </if>
+      <if test="employable != null" >
+        EMPLOYABLE = #{employable,jdbcType=DECIMAL},
+      </if>
+      <if test="basicemployable != null" >
+        BASICEMPLOYABLE = #{basicemployable,jdbcType=DECIMAL},
+      </if>
+      <if test="unemployable != null" >
+        UNEMPLOYABLE = #{unemployable,jdbcType=DECIMAL},
+      </if>
+      <if test="superiors != null" >
+        SUPERIORS = #{superiors,jdbcType=DECIMAL},
+      </if>
+      <if test="peer != null" >
+        PEER = #{peer,jdbcType=DECIMAL},
+      </if>
+      <if test="inferior != null" >
+        INFERIOR = #{inferior,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where VALUEID = #{valueid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jixiao.entity.Checkvalue" >
+    update checkvalue
+    set SXSZVALUE = #{sxszvalue,jdbcType=INTEGER},
+      LJZLVALUE = #{ljzlvalue,jdbcType=INTEGER},
+      GZZFVALUE = #{gzzfvalue,jdbcType=INTEGER},
+      JCNLVALUE = #{jcnlvalue,jdbcType=INTEGER},
+      ZZXTNLVALUE = #{zzxtnlvalue,jdbcType=INTEGER},
+      CXNLVALUE = #{cxnlvalue,jdbcType=INTEGER},
+      LDNLVALUE = #{ldnlvalue,jdbcType=INTEGER},
+      ZRXVALUE = #{zrxvalue,jdbcType=INTEGER},
+      FWYSVALUE = #{fwysvalue,jdbcType=INTEGER},
+      MBDCVALUE = #{mbdcvalue,jdbcType=INTEGER},
+      GLXLVALUE = #{glxlvalue,jdbcType=INTEGER},
+      XSKFVALUE = #{xskfvalue,jdbcType=INTEGER},
+      EXCELLENT = #{excellent,jdbcType=DECIMAL},
+      GOOD = #{good,jdbcType=DECIMAL},
+      EMPLOYABLE = #{employable,jdbcType=DECIMAL},
+      BASICEMPLOYABLE = #{basicemployable,jdbcType=DECIMAL},
+      UNEMPLOYABLE = #{unemployable,jdbcType=DECIMAL},
+      SUPERIORS = #{superiors,jdbcType=DECIMAL},
+      PEER = #{peer,jdbcType=DECIMAL},
+      INFERIOR = #{inferior,jdbcType=DECIMAL}
+    where VALUEID = #{valueid,jdbcType=INTEGER}
+  </update>
+</mapper>
